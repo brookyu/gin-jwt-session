@@ -1,9 +1,10 @@
 package controllers
 
 import (
-	"github.com/ScottHuangZL/gin-jwt-session"
-	"github.com/ScottHuangZL/gin-jwt-session/example/models"
+	session "github.com/ScottHuangZL/gin-jwt-session"
+	model "github.com/ScottHuangZL/gin-jwt-session/example/models"
 	"github.com/gin-gonic/gin"
+
 	// "log"
 	"net/http"
 	"time"
@@ -46,7 +47,7 @@ func ValidateJwtLoginHandler(c *gin.Context) {
 	var form model.Login
 	//try get login info
 	if err := c.ShouldBind(&form); err != nil {
-		session.SetFlash(c, "Get login info error: "+err.Error())
+		session.SetFlash(c, "Get logisn info error: "+err.Error())
 		c.Redirect(http.StatusMovedPermanently, "/login")
 		return
 	}
@@ -88,5 +89,5 @@ func SomeCookiesHandler(c *gin.Context) {
 		"session message":                 sessionMessage,
 		"session new message":             message2,
 		"session read again after delete": readAgain,
-		"status": http.StatusOK})
+		"status":                          http.StatusOK})
 }
